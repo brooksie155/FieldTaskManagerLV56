@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response as IlluminateResponse;
 
 use Illuminate\Support\Facades\DB;
-use App\Client as elClient;
+use App\Models\Client as elClient;
 
 /**
  * Manage client CRUD interactions
