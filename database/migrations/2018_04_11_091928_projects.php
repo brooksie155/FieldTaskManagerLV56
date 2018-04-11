@@ -19,6 +19,8 @@ class Projects extends Migration
             $table->text('description')->nullable();
             $table->integer('researcher_id');
             $table->integer('client_id');
+            $table->date('due');
+            $table->enum('status',['proposed','active','post-processing','delivered']);
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
