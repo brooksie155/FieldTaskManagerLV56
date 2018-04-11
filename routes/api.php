@@ -19,5 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/client/{id}', [
     'as' => 'client_get',
-    'uses' => 'ClientManager@getClient'
+    'uses' => 'API\ClientManager@getClient'
 ]);
