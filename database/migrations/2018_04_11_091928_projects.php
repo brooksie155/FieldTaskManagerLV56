@@ -19,7 +19,7 @@ class Projects extends Migration
             $table->text('description')->nullable();
             $table->integer('researcher_id');
             $table->integer('client_id');
-            $table->dateTime('deleted_at');
+            $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
     }

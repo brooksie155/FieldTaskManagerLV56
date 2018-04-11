@@ -21,7 +21,7 @@ class Clients extends Migration
             $table->string('phone')->unique();
             $table->string('company');
             $table->text('address');
-            $table->dateTime('deleted_at');
+            $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
     }

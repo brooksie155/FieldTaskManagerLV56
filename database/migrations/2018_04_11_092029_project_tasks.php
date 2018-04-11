@@ -19,7 +19,7 @@ class ProjectTasks extends Migration
             $table->text('descrition')->nullable();
             $table->enum('type', ['video','diary','survey','question']);
             $table->integer('project_id');
-            $table->dateTime('deleted_at');
+            $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });    
     }

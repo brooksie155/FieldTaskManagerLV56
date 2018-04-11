@@ -20,7 +20,7 @@ class Respondents extends Migration
             $table->string('email')->unique();
             $table->string('password');         
             $table->string('phone')->unique();
-            $table->dateTime('deleted_at');
+            $table->dateTime('deleted_at')->nullable();
             $table->rememberToken();  
             $table->timestamps();
         });

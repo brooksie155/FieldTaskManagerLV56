@@ -19,7 +19,7 @@ class TaskRespondentsResponses extends Migration
             $table->string('respondent_id');
             $table->string('project_id');
             $table->text('response');
-            $table->dateTime('deleted_at');
+            $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });    
     }
