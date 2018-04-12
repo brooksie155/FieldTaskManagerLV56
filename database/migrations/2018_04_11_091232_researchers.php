@@ -13,13 +13,13 @@ class Researchers extends Migration
      */
     public function up()
     {
-        Schema::create('users_reearchers', function (Blueprint $table) {
+        Schema::create('users_researchers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('password');         
-            $table->string('phone')->unique();
+            $table->string('phone');
             $table->dateTime('deleted_at');
             $table->rememberToken();
             $table->timestamps();
@@ -33,6 +33,6 @@ class Researchers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_reearchers');
+        Schema::dropIfExists('users_researchers');
     }
 }

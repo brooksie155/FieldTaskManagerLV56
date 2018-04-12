@@ -17,9 +17,9 @@ class Respondents extends Migration
             $table->increments('id');
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('password');         
-            $table->string('phone')->unique();
+            $table->string('phone');
             $table->dateTime('deleted_at')->nullable();
             $table->rememberToken();  
             $table->timestamps();
