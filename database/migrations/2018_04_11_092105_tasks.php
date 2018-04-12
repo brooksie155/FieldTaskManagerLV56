@@ -29,6 +29,7 @@ class Tasks extends Migration
             $table->dateTime('deleted_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->index('project_task_id');
         });
     }
 

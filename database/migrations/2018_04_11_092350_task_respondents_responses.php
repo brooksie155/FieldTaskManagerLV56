@@ -22,6 +22,8 @@ class TaskRespondentsResponses extends Migration
             $table->boolean('complete');
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
+            $table->index(['project_id','task_id','respondent_id']);
+            $table->index('respondent_id','task_id');               
         });    
     }
 

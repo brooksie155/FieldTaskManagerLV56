@@ -18,6 +18,8 @@ class ProjectRespondents extends Migration
             $table->integer('respondent_id');
             $table->integer('project_id');
             $table->timestamps();
+            $table->index(['respondent_id','project_id']);
+            $table->index('project_id');            
         });
     }
 

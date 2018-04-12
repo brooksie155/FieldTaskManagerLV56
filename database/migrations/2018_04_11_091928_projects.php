@@ -23,6 +23,7 @@ class Projects extends Migration
             $table->enum('status',['proposed','active','post-processing','delivered']);
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
+            $table->index('client_id');
         });
     }
 

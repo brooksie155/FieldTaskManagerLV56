@@ -21,6 +21,8 @@ class ProjectTasks extends Migration
             $table->integer('project_id');
             $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
+            $table->index('project_id');
+            
         });    
     }
 

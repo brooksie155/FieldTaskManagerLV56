@@ -18,6 +18,8 @@ class ProjectResearchers extends Migration
             $table->integer('researcher_id');
             $table->integer('project_id');
             $table->timestamps();
+            $table->index(['researcher_id','project_id']);
+            $table->index('project_id');
         });
     }
 
