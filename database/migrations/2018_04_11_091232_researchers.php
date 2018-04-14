@@ -20,7 +20,7 @@ class Researchers extends Migration
             $table->string('email');
             $table->string('password');         
             $table->string('phone');
-            $table->dateTime('deleted_at');
+            $table->timestamp('deleted_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

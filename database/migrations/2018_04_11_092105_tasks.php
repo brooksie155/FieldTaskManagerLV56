@@ -26,7 +26,7 @@ class Tasks extends Migration
             $table->string('summary');
             $table->string('description')->nullable();     
             $table->date('due')->nullable();       
-            $table->dateTime('deleted_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->index('project_task_id');
