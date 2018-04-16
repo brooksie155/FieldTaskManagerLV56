@@ -13,4 +13,8 @@
  */
 class ProjectResearchersTableSeeder {
     //put your code here
+    
+    // *** Currently 1 to Many, therefore join table not required *** //
+    
+    // ****** To Be Deleted ****** //
 }

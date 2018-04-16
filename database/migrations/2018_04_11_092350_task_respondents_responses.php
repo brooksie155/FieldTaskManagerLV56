@@ -17,7 +17,7 @@ class TaskRespondentsResponses extends Migration
             $table->increments('id');
             $table->string('task_id');
             $table->string('respondent_id');
-            $table->string('project_id');
+            $table->string('project_id');           // Required ?
             $table->text('response');
             $table->boolean('complete');
             $table->timestamp('deleted_at')->nullable();

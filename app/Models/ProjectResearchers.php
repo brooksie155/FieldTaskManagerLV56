@@ -1,6 +1,7 @@
 <?php
 
 use \Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 namespace App\Models;
 
@@ -11,7 +12,7 @@ namespace App\Models;
  *
  * @author brooksie
  */
-class ProjectRespondents extends Pivot
+class ProjectResearchers extends Pivot
 {
     
 //    const CREATED_AT = 'created_at';      // default(s)

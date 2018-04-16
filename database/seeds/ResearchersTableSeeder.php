@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Re
+use App\Models\UsersResearchers;
+
 /**
  * Description of Researchers
  *
@@ -9,6 +10,25 @@ use App\Models\Re
  */
 class ResearchersTableSeeder extends Seeder
 {
-    DB::table('users_researchers')->delete()l
-            
+    
+    public function run()
+    {    
+
+        DB::table('users_researchers')->delete();
+        UsersResearchers::create([
+            'firstname' => 'steve',
+            'lastname' => 'brooks',
+            'email' => 'foo@bar.com',
+            'phone' => '01234 567890',
+            'password' => 'password'           
+        ]);
+        
+        UsersResearchers::create([
+            'firstname' => 'laura',
+            'lastname' => 'brooks',
+            'email' => 'foo@bar.com',
+            'phone' => '01234 567890',
+            'password' => 'password'           
+        ]);        
+    }           
 }

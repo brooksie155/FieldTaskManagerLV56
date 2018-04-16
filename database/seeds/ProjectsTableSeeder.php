@@ -1,16 +1,37 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+use Illuminate\Database\Seeder;
+use App\Models\Project;
 
 /**
  * Description of ProjectsTableSeeder
  *
  * @author stephenb
  */
-class ProjectsTableSeeder {
-    //put your code here
+class ProjectsTableSeeder extends Seeder
+{
+    public function run()
+    {      
+        $dt = new \DateTimeImmutable();
+        
+        DB::table('projects')->delete();
+       
+        Project::create([
+            'name' => 'Projet 100',
+            'description' => 'The first dummy project',
+            'researcher_id' => 1,
+            'client_id' => 1,
+            'due' => $dt->modify('+3 month'),
+            'status' => 'proposed'
+        ]);
+        
+        Project::create([
+            'name' => 'Projet 200',
+            'description' => 'The second dummy project',
+            'researcher_id' => 2,
+            'client_id' => 1,
+            'due' => $dt->modify('+3 month'),
+            'status' => 'active'      
+        ]);    
+    }
 }

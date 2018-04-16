@@ -1,16 +1,27 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+use Illuminate\Database\Seeder;
+use App\Models\ProjectRespondents;
 
 /**
- * Description of ProjectRespondentsTableSeeder
+ * Description of RespondentsTableSeeder
  *
  * @author stephenb
  */
-class ProjectRespondentsTableSeeder {
-    //put your code here
+class ProjectRespondentsTableSeeder extends Seeder
+{
+    public function run()
+    {      
+        DB::table('x_project_respondents')->delete();
+       
+        ProjectRespondents::create([
+            'respondent_id' => 1,
+            'project_id' => 1,        
+        ]);
+        
+        ProjectRespondents::create([
+            'respondent_id' => 2,
+            'project_id' => 2,                 
+        ]);    
+    }
 }
