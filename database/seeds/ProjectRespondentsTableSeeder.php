@@ -7,10 +7,10 @@
  */
 
 /**
- * Description of Tasks
+ * Description of ProjectRespondentsTableSeeder
  *
- * @author brooksie
+ * @author stephenb
  */
-class Tasks {
+class ProjectRespondentsTableSeeder {
     //put your code here
 }

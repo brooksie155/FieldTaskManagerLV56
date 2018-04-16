@@ -7,10 +7,10 @@
  */
 
 /**
- * Description of Projects
+ * Description of ProjectResearchersTableSeeder
  *
- * @author brooksie
+ * @author stephenb
  */
-class Projects {
+class ProjectResearchersTableSeeder {
     //put your code here
 }

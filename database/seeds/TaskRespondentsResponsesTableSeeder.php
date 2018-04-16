@@ -7,10 +7,10 @@
  */
 
 /**
- * Description of TaskRespondentsResponses
+ * Description of TaskRespondentsResponsesTableSeeder
  *
- * @author brooksie
+ * @author stephenb
  */
-class TaskRespondentsResponses {
+class TaskRespondentsResponsesTableSeeder {
     //put your code here
 }
