@@ -65,6 +65,10 @@
         </style>
     </head>
     <body>
+        <img 
+            src='http://thefield-uk.com/wp-content/uploads/2013/01/the-filed-logo-yellow-WEB.png'
+            style='padding:10px;'><br />
+
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -78,6 +82,8 @@
             @endif
 
             <div class="content">
+
+
                 <div class="title m-b-md">
                     Laravel
                 </div>

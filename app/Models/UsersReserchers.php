@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Client extends Model
+class UsersReserchers extends Model
 {
+    use SoftDeletes;
+    
         
 //    const CREATED_AT = 'created_at';      // default(s)
 //    const UPDATED_AT = 'updated_at';
@@ -16,15 +17,7 @@ class Client extends Model
      *
      * @var string$table
      */   
-//    protected $table = 'clients';         // by default this is the expected name
-    
-    
-    /**
-     * The connection name for the model.
-     *
-     * @var string
-     */
-//    protected $connection = 'mysql';      // default
+    protected $table = 'users_researchers';         
     
     /**
      * Indicates if the model should be timestamped.
@@ -39,16 +32,13 @@ class Client extends Model
      * requirements - i.e. insert all, update only comments
      */
      protected $guarded = ['created_at', 'deleted_at', 'updated_at'];    
-     
+
     /**
      * 
      * @return \App\Models\Task
      */
-    public function project() : HasMany
+    public function project() : Project
     {
-        // fk = projects.client_id
-        return $this->hasMany(Project::class);
+        return $this->hasMany(Project::class, 'researcher_id');
     }
-    
-    
 }

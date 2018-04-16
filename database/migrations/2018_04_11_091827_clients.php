@@ -17,11 +17,11 @@ class Clients extends Migration
             $table->increments('id');
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('email')->unique();
-            $table->string('phone')->unique();
+            $table->string('email');
+            $table->string('phone');
             $table->string('company');
             $table->text('address');
-            $table->dateTime('deleted_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

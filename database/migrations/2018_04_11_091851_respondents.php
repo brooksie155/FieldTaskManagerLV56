@@ -17,10 +17,10 @@ class Respondents extends Migration
             $table->increments('id');
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('password');         
-            $table->string('phone')->unique();
-            $table->dateTime('deleted_at')->nullable();
+            $table->string('phone');
+            $table->timestamp('deleted_at')->nullable();
             $table->rememberToken();  
             $table->timestamps();
         });

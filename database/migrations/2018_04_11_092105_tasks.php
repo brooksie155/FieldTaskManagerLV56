@@ -21,14 +21,14 @@ class Tasks extends Migration
             );
             $table->text('response_options')->nullable();
             $table->integer('minimum_requirement')->default(1);
-            $table->integer('project_task_id');
+            $table->integer('project_id');
             $table->integer('project_task_number');
             $table->string('summary');
             $table->string('description')->nullable();     
             $table->date('due')->nullable();       
-            $table->dateTime('deleted_at')->nullable();
-            $table->rememberToken();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
+            $table->index('project_id');
         });
     }
 
