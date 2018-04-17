@@ -20,11 +20,27 @@ class ClientTableSeeder extends Seeder
             'email' => 'foo@bar.com',
             'phone' => '01234 567890',
             'company' => 'BromideTech',
-            'address' => '44 Acacia Avenue',
-//            'deleted_at' => $time(),
-//            'created_at' => $time(),
-//            'updated_at' => $time(),            
+            'address' => '44 Acacia Avenue',        
         ]);
+        
+        Client::create([
+            'firstname' => 'bob',
+            'lastname' => 'afet',
+            'email' => 'bon@fet.com',
+            'phone' => '01234 567890',
+            'company' => 'BobAfet.com',
+            'address' => '44 Acacia Avenue',        
+        ]);
+
+        Client::create([
+            'firstname' => 'jim',
+            'lastname' => 'crabapple',
+            'email' => 'jim@crab.com',
+            'phone' => '01234 567890',
+            'company' => 'CrabApple Studios',
+            'address' => '44 Acacia Avenue',        
+        ]);
+        
     }
         
 }

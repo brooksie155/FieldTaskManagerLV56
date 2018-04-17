@@ -15,9 +15,25 @@ use App\Models\Client as elClient;
  */
 class ClientManager extends Controller
 {
+    /**
+     * 
+     * @param int $id
+     * @return IlluminateResponse
+     */
     public function getClient(int $id) : IlluminateResponse 
     {
         return Response(elClient::where('id', $id)->get());
+    }
+    
+    public function listClients() : IlluminateResponse
+    {
+        $chunk = [];
+        
+        elClient::chunk(2, function($clients) use (&$chunk) {
+            $chunk = $clients;
+        });
+        
+        return Response($chunk);
     }
 
 }
