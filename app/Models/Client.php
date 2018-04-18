@@ -9,9 +9,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Client extends Model
 {
-        
 //    const CREATED_AT = 'created_at';      // default(s)
-//    const UPDATED_AT = 'updated_at';
+//    const UPDATED_AT = 'updated_at';    
+    
+    /**
+     * @var array $fieldMeta
+     */
+    private $fieldMeta = [
+       'firstname'  => 'required|string',
+       'lastname'   => 'required|string',
+       'email'      => 'string',
+       'phone'      => 'numeric',
+       'company'    => 'required|string',
+       'address'    => 'string'            
+    ];    
+    
 
      /**
      * Table name
@@ -52,5 +64,13 @@ class Client extends Model
         return $this->hasMany(Project::class);
     }
     
+    /**
+     * @return array
+     */
+    public function getFieldMeta() : array
+    {
+        return $this->fieldMeta;
+    }
+            
     
 }
