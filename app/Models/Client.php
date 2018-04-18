@@ -12,8 +12,10 @@ class Client extends Model
 //    const CREATED_AT = 'created_at';      // default(s)
 //    const UPDATED_AT = 'updated_at';    
     
+    use SoftDeletes;
+    
     /**
-     * @var array $fieldMeta
+     * @var array $fieldMeta  -- fields not required on update !!
      */
     private $fieldMeta = [
        'firstname'  => 'required|string',
@@ -71,6 +73,19 @@ class Client extends Model
     {
         return $this->fieldMeta;
     }
-            
+    
+    public function getFieldMetaForUpdate() : array
+    {
+        foreach ($this->fieldMeta as $field => $meta) {
+            $fieldMetaForUpdate[$field] = str_replace(
+                'required|', 
+                '', 
+                $meta
+            );
+        }
+        
+        return $fieldMetaForUpdate ?? [];
+     }
+        
     
 }

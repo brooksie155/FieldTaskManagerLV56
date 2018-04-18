@@ -13,6 +13,18 @@ use Illuminate\Http\Request;
 |
 */
 
+
+/**
+ * Use for route construction ?? WIP
+ */
+$routing = [
+    'client' => [
+        'post' => ['add','update','delete','restore','expunge'],
+        'get' => ['list','search','deleted']
+    ]
+];
+
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -40,14 +52,12 @@ Route::post('/clients/add', [
     'uses' => 'API\ClientManager@addAction'    
 ]);
 
-// SWTICH TO POST
-Route::get('/clients/update', [                
+Route::post('/clients/update/{id}', [                
     'as' => 'client_update',
     'uses' => 'API\ClientManager@updateAction'    
 ]);
 
-// SWTICH TO POST
-Route::get('/clients/delete', [                
+Route::post('/clients/delete/{id}', [                
     'as' => 'client_delete',
     'uses' => 'API\ClientManager@deleteAction'    
 ]);
@@ -56,6 +66,19 @@ Route::get('/clients/deleted', [
     'as' => 'client_deleted',
     'uses' => 'API\ClientManager@listDeletedAction'    
 ]);
+
+Route::post('/clients/restore/{id}', [               
+    'as' => 'client_restore',
+    'uses' => 'API\ClientManager@listDeletedAction'    
+]);
+
+Route::post('/clients/expunge/{id}', [               
+    'as' => 'client_expunge',
+    'uses' => 'API\ClientManager@listDeletedAction'    
+]);
+
+
+
 
 // will have similar routes for other entities .
 //  ... can theny be generated dynamically?

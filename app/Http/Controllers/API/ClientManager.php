@@ -142,37 +142,79 @@ class ClientManager extends Controller
         return Response($result);       
     }
     
-    
+    /**
+     * Update client
+     * 
+     * @param Request $request
+     * @param int $id
+     * @return IlluminateResponse
+     */
     public function updateAction(Request $request, int $id)  : IlluminateResponse 
     {
+        $fieldMeta = $this->elClient->getFieldMetaForUpdate();
+        $validated = $request->validate($fieldMeta);       
+
+        try {
+            $result = elClient::where('id', $id)->update($validated);            
+        }
+        catch (QueryException $ex) {
+            $msg = (getenv('APP_ENV') == 'dev')
+                ? $ex->getMessage()
+                :'DB Error'
+            ;
+
+            return Response($msg);
+        }
         
+        return Response($result);           
     }
      
+    /**
+     * Delete *mark as deleted* client
+     * 
+     * @param int $id
+     * @return IlluminateResponse
+     */
     public function deleteAction(int $id)  : IlluminateResponse 
     {
         $result = elClient::where('id', $id)->delete();
         return Response($result);        
     }
     
-    public function restoreAction(int $id)  : IlluminateResponse 
-    {
-        $result = elClient::withTrashed()
-            ->where('id', $id)
-            ->restore();
-        
-        return Response($result);        
-    }
-    
+    /**
+     * List *deleted* clients 
+     * 
+     * @return IlluminateResponse
+     */
     public function listDeletedAction()  : IlluminateResponse 
     {
         return Response(elClient::onlyTrashed()->get());        
+    }    
+    
+    /**
+     * Restore deleted client
+     * 
+     * @param int $id
+     * @return IlluminateResponse
+     */
+    public function restoreAction(int $id)  : IlluminateResponse 
+    {
+        $client = elClient::withTrashed()->where('id', $id)->get();
+        $client->restore();
+        
+        return Response($client);        
     }
         
+    /**
+     * Physically delete client
+     * 
+     * @param int $id
+     * @return IlluminateResponse
+     */
+    public function expungeClient(int $id)  : IlluminateResponse 
+    {
+        return Response(elClient::where('id', $id)->forceDelete());        
+    }
         
-        
-        
-      
-    
-    
 }
 
