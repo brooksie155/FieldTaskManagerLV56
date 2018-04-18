@@ -26,3 +26,8 @@ Route::get('/clients/list', [
     'as' => 'client_list',
     'uses' => 'API\ClientManager@listClients'
 ]);
+
+Route::get('/clients/search', [
+    'as' => 'client_search',
+    'uses' => 'API\ClientManager@searchClients'
+]);
