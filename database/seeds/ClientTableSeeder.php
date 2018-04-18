@@ -20,7 +20,8 @@ class ClientTableSeeder extends Seeder
             'email' => 'foo@bar.com',
             'phone' => '01234 567890',
             'company' => 'BromideTech',
-            'address' => '44 Acacia Avenue',        
+            'address' => '44 Acacia Avenue',     
+            'website' => 'brooksie-net.co.uk'
         ]);
         
         Client::create([
@@ -29,7 +30,8 @@ class ClientTableSeeder extends Seeder
             'email' => 'bon@fet.com',
             'phone' => '01234 567890',
             'company' => 'BobAfet.com',
-            'address' => '44 Acacia Avenue',        
+            'address' => '44 Acacia Avenue',  
+            'website' => 'scrabble-net.com'
         ]);
 
         Client::create([
@@ -38,7 +40,8 @@ class ClientTableSeeder extends Seeder
             'email' => 'jim@crab.com',
             'phone' => '01234 567890',
             'company' => 'CrabApple Studios',
-            'address' => '44 Acacia Avenue',        
+            'address' => '44 Acacia Avenue',  
+            'website' => 'thefield-uk.com'
         ]);
         
     }
