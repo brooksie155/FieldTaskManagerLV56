@@ -17,6 +17,7 @@ class Projects extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description')->nullable();
+            $table->text('introduction')->nullable();
             $table->integer('researcher_id')->nullable();
             $table->integer('client_id')->nullable();
             $table->date('due')->nullable();

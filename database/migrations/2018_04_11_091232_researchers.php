@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+// e.g. Hope & Anchor (research clients) -> their clients may also need a dashbaord at somepoint
 class Researchers extends Migration
 {
     /**
@@ -18,8 +19,9 @@ class Researchers extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('email');
-            $table->string('password');         
+            $table->string('password');
             $table->string('phone');
+            $table->string('company');  // ... normalise to companies table ?
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

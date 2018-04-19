@@ -18,10 +18,15 @@ class Respondents extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('email');
-            $table->string('password');         
+            $table->string('password');
             $table->string('phone');
+            $table->tinyInteger('age');
+            $table->enum('social_economic_grade', ['A', 'B', 'C1', 'C2', 'D', 'E']);
+            $table->enum('gender', ['male','female','other']);
+            $table->string('gender_other');
+            $table->text('profile');  // data from screener form
             $table->softDeletes();
-            $table->rememberToken();  
+            $table->rememberToken();
             $table->timestamps();
         });
     }
