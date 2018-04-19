@@ -66,17 +66,21 @@ class ClientManager extends Controller
         string $order = 'id', 
         string $orderDir = 'desc', 
         int $limit = 50, 
-        int $offset = 0 ) : IlluminateResponse
+        int $offset = 0,
+        bool $withTrashed = false) : IlluminateResponse
     {
                        
-        $clients = $this->elClient
+        $client = $this->elClient
             ->where($this->whereColumnConditions)
             ->orderBy($order)
             ->take($limit)
-            ->skip($offset)
-            ->get();
+            ->skip($offset);
+        
+        if ($withTrashed === true) {
+            $client->withTrashed();
+        }
                         
-        return Response($clients);
+        return Response($client->get());
     }
 
     /**
@@ -199,8 +203,7 @@ class ClientManager extends Controller
      */
     public function restoreAction(int $id)  : IlluminateResponse 
     {
-        $client = elClient::withTrashed()->where('id', $id)->get();
-        $client->restore();
+        $client = elClient::withTrashed()->where('id', $id)->restore();
         
         return Response($client);        
     }
@@ -211,7 +214,7 @@ class ClientManager extends Controller
      * @param int $id
      * @return IlluminateResponse
      */
-    public function expungeClient(int $id)  : IlluminateResponse 
+    public function expungeAction(int $id)  : IlluminateResponse 
     {
         return Response(elClient::where('id', $id)->forceDelete());        
     }
