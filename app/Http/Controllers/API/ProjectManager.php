@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Helpers\CrudController\CrudControllerInterface;
+use App\Http\Controllers\Helpers\CrudController\CrudControllerTrait;
 
+use Illuminate\Database\Eloquent\Model;
 use App\Models\Project as elProject;
 use App\Models\Task as elTask;
 
+use Illuminate\Http\Request;
+use Illuminate\Http\Response as IlluminateResponse;
 
 
 /**
@@ -14,28 +19,55 @@ use App\Models\Task as elTask;
  *
  * @author stephenb
  */
-class ProjectManager extends Controller
+class ProjectManager extends Controller implements CrudControllerInterface
 {
+    
+    use CrudControllerTrait; 
+    
     /**
-     * Get specified project
-     * 
-     * @todo : 
-     *  - include #tasks
-     *  - task progress [no response, partial, complete]
-     *  - include #respondents
-     *  - sorting and filtering options
-     * 
-     *  - use middleware to determine if project is accessable by user, i.e. if 
-     *    they are a respondent
-     * 
-     * @param int $id
-     * @return \App\Http\Controllers\API\IlluminateResponse
+     * @var array $searchableFields
      */
-    public function getProject(int $id) : IlluminateResponse 
+    protected $searchableFields = [
+        'name', 'researcher_id', 'client_id', 'due', 'status'
+    ];
+    
+    /**
+     * @var array $whereColumnConditions
+     */    
+    protected $whereColumnConditions = [];
+    
+    /**
+     * @var App\Models\project
+     */
+    private $modelElProject; 
+    
+    /**
+     * 
+     */
+    public function __construct()
     {
-        return Response(elProject::where('id', $id)->get());
+        $this->modelElProject = new elProject();
     }
     
+    /**
+     * 
+     * @return \App\Http\Controllers\API\Model
+     */
+    public function getModel() : Model
+    {
+        return $this->modelElProject;
+    }
+    
+    /**
+     * 
+     * @param int $id
+     * @return IlluminateResponse
+     */
+//    public function getAction(int $id) : IlluminateResponse 
+//    {
+//        return Response(elProject::where('id', $id)->get());
+//    }
+//    
     /**
      * Get list of projects filter on status/researcher, order by due date/name/id
      */

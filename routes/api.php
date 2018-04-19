@@ -28,5 +28,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 include('api/client.php');
+include('api/project.php');
+include('api/task.php');
+include('api/researcher.php');
+include('api/respondent.php');
 
 
