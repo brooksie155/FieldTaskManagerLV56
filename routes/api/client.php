@@ -2,6 +2,17 @@
 
 //use App\Http\Controllers\API\ClientManager;
 
+$crudControllers = [
+    'client' => 'API\ClientManager',
+    'project' => 'API\ProjectManager',
+];
+        
+$crudRoutes = [
+    'get' => ['id'],
+    'list' => [],
+    'search' => []
+];
+
 Route::get('/client/get/{id}', [
     'as' => 'client_get',
     'uses' => 'API\ClientManager@getAction'
