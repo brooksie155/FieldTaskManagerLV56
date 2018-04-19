@@ -11,4 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 interface CrudControllerInterface 
 {
     public function getModel() : Model;
+    
+    public function getSearchableFields() : array;
+    
 }

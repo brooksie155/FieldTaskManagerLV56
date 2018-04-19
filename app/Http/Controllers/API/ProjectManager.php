@@ -21,7 +21,6 @@ use Illuminate\Http\Response as IlluminateResponse;
  */
 class ProjectManager extends Controller implements CrudControllerInterface
 {
-    
     use CrudControllerTrait; 
     
     /**
@@ -60,19 +59,12 @@ class ProjectManager extends Controller implements CrudControllerInterface
     
     /**
      * 
-     * @param int $id
-     * @return IlluminateResponse
+     * @return array
      */
-//    public function getAction(int $id) : IlluminateResponse 
-//    {
-//        return Response(elProject::where('id', $id)->get());
-//    }
-//    
-    /**
-     * Get list of projects filter on status/researcher, order by due date/name/id
-     */
-    public function listProjects()
-    {}
+    public function getSearchableFields() : array
+    {
+        return $this->searchableFields;
+    }
     
     /**
      * Get list of projects for given respondent
@@ -80,29 +72,8 @@ class ProjectManager extends Controller implements CrudControllerInterface
      */
     public function listProjectsForRespondent()
     {} 
-    
-    /**
-     * mark project as deleted
-     * 
-     * - Research User only!!
-     */
-    public function deleteProject()
-    {}
-    
-    /**
-     * update project info
-     * 
-     * - Research user only
-     */
-    public function updateProject()
-    {}
-    
-    public function createProject()
-    {
-       
-    }
-    
+        
+    /** part of update ?? **/
     public function addRespondent()
-    {
-    }    
+    {}    
 }

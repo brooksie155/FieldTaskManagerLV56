@@ -14,13 +14,25 @@ class Project extends Model
     const CREATED_AT = 'created_at';      // default(s)
     const UPDATED_AT = 'updated_at';
 
-     /**
+    /**
      * Table name
      *
      * @var string $table
      */   
-    // protected $table = 'projects';         // by default this is the expected name
+    protected $table = 'projects';         
     
+    /**
+     * @var array $fieldMeta  -- fields not required on update !!
+     */
+    private $fieldMeta = [
+       'name'  => 'required|string',
+       'description' => 'string',
+       'researcher_id' => 'numeric',    // Referenece ?
+       'client_id' => 'numeric',    // Reference ?
+       'due' => 'date',
+       'status' => 'required|in:proposed, active, post-processing, delivered'            
+    ];        
+        
     /**
      * Indicates if the model should be timestamped.
      *
@@ -47,6 +59,14 @@ class Project extends Model
     {
         return $this->belongsTo(Client::class);
     }
+    
+    /**
+     * @return array
+     */
+    public function getFieldMeta() : array
+    {
+        return $this->fieldMeta;
+    }    
     
     /**
      * A project has one researcher
