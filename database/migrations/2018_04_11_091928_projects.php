@@ -21,7 +21,7 @@ class Projects extends Migration
             $table->integer('client_id');
             $table->date('due');
             $table->enum('status',['proposed','active','post-processing','delivered']);
-            $table->timestamp('deleted_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
             $table->index('client_id');
         });

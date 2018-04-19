@@ -20,7 +20,7 @@ class TaskRespondentsResponses extends Migration
             $table->string('project_id');           // Required ?
             $table->text('response');
             $table->boolean('complete');
-            $table->timestamp('deleted_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
             $table->index(['project_id','task_id','respondent_id']);
             $table->index('respondent_id','task_id');               
