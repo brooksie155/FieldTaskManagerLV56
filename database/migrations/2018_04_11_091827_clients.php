@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Research companies, i.e. Hope and Anchor, Kantar, Spinach 
+ * - will require a login so they can review project progress 
+ * ... project info, tasks, respondent list (anonyimised ?), responses
+ */
 class Clients extends Migration
 {
     /**

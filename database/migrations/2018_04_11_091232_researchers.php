@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+
+/**
+ * Admin - access all areas , Laura & Claire
+ * 
+ */
 class Researchers extends Migration
 {
     /**
