@@ -27,6 +27,101 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+/*
+|--------------------------------------------------------------------------
+| Crud Routes
+|--------------------------------------------------------------------------
+| Most controllers expose add, update, deleted, deleted, expunge, list and search
+| methods and use the CrudControllerTrait to provide theses. This section generates 
+| the routes for those actions.
+|
+| @todo - investigate if it is possible/feasible to lookup which controllers 
+| implement the CrudControllerTrait and create routes automatically
+|
+*/
+$crudRoutes = [
+    
+    'get' => [
+        'get' => [
+           'params' => ['id' => '[0-9]+']
+        ],
+        'list' => [],
+        'search' => [], 
+        'deleted' => [],
+    ],
+    
+    'post' => [
+       'add' => [],
+       'update' => [
+            'params' => ['id' => '[0-9]+']
+        ],
+       'delete' => [
+            'params' => ['id' => '[0-9]+']
+        ],
+       'restore' => [
+            'params' => ['id' => '[0-9]+']
+        ],
+       'expunge' => [
+            'params' => ['id' => '[0-9]+']
+        ]       
+    ]
+    
+];
+
+$crudControllers = [
+    'client' => [
+        'controller' => 'API\ClientManager',
+        'route' => 'client',
+        'routes' => $crudRoutes        
+    ],
+    
+    'project' => [
+        'controller' => 'API\ProjectManager',
+        'route' => 'project',
+        'routes' => $crudRoutes
+    ],
+];
+
+foreach($crudControllers as $crudRouteMeta) {
+    
+    foreach($crudRouteMeta['routes'] as $routeMethod => $routes) {
+        
+        foreach($routes as $routeEndPoint => $routeMeta) {
+            
+            // construct params for route
+            $params = $routeMeta['params'] ?? [];
+            $routeParams = (!empty($params))
+                ? '{' . implode('}/{', array_keys($params)) . '}'
+                : '';
+            
+            $route = "{$crudRouteMeta['route']}/{$routeEndPoint}/{$routeParams}";
+            switch ($routeMethod) {
+
+                case 'get':
+                    Route::get($route, [
+                        'as' => "{$crudRouteMeta['route']}_{$route}",
+                        'uses' => "{$crudRouteMeta['controller']}@{$routeEndPoint}Action"
+                    ])->where($params);      
+
+                case 'post':
+                    Route::post($route, [
+                        'as' => "{$crudRouteMeta['route']}_{$route}",
+                        'uses' => "{$crudRouteMeta['controller']}@{$routeEndPoint}Action"
+                    ])->where($params);                 
+            }
+        }
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Specific Routes per controller
+|--------------------------------------------------------------------------
+| In order to prevent this file from becoming unweildly in length, each controller
+| should have it's own route file included rather than list them all here. 
+|
+*/
+
 include('api/client.php');
 include('api/project.php');
 include('api/task.php');
