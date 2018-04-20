@@ -38,6 +38,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 | @todo - investigate if it is possible/feasible to lookup which controllers 
 | implement the CrudControllerTrait and create routes automatically
 |
+| @todo break out into coroutines, yield data rather than nested loops
+|     lambda, closure, coroutine ... ?
 */
 $crudRoutes = [
     
@@ -85,7 +87,7 @@ $crudControllers = [
 foreach($crudControllers as $crudRouteMeta) {
     
     foreach($crudRouteMeta['routes'] as $routeMethod => $routes) {
-        
+                
         foreach($routes as $routeEndPoint => $routeMeta) {
             
             // construct params for route
