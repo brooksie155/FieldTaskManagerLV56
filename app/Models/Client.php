@@ -28,11 +28,12 @@ class Client extends Model
     
 
      /**
-     * Table name
+     * Table name, by default 'clients' would be derived from the 
+     * models class name and presumed
      *
-     * @var string$table
+     * @var string $table
      */   
-//    protected $table = 'clients';         // by default this is the expected name
+    protected $table = 'clients';         // 
     
     
     /**

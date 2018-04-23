@@ -159,7 +159,7 @@ trait CrudControllerTrait
      * 
      * @return IlluminateResponse
      */
-    public function listDeletedAction()  : IlluminateResponse 
+    public function deletedAction()  : IlluminateResponse 
     {
         return Response($this->getModel()::onlyTrashed()->get());        
     }    
@@ -185,7 +185,7 @@ trait CrudControllerTrait
      */
     public function expungeAction(int $id)  : IlluminateResponse 
     {
-        return Response($this->getModel()::where('id', $id)->forceDelete());        
+        return Response($this->getModel()::onlyTrashed()->where('id', $id)->forceDelete());        
     }    
     
 }
