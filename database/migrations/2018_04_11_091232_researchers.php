@@ -23,8 +23,9 @@ class Researchers extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('email');
-            $table->string('password');         
+            $table->string('password');
             $table->string('phone');
+            $table->string('company');  // ... normalise to companies table ?
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

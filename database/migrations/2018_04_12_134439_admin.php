@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Respondents extends Migration
+class Admin extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,14 @@ class Respondents extends Migration
      */
     public function up()
     {
-        Schema::create('users_respondents', function (Blueprint $table) {
+        Schema::create('users_admin', function (Blueprint $table) {
             $table->increments('id');
             $table->string('firstname');
             $table->string('lastname');
             $table->string('email');
             $table->string('password');
-            $table->string('phone');
-            $table->tinyInteger('age');
-            $table->enum('social_economic_grade', ['A', 'B', 'C1', 'C2', 'D', 'E']);
-            $table->enum('gender', ['male','female','other']);
-            $table->string('gender_other');
-            $table->text('profile');  // data from screener form
+            $table->string('phone')->nullable();
+            $table->string('totp')->nullable();
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
@@ -38,6 +34,6 @@ class Respondents extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_respondents');
+        Schema::dropIfExists('users_admin');
     }
 }

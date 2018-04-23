@@ -27,9 +27,10 @@ class Clients extends Migration
             $table->string('company');
             $table->text('address')->nullable();
             $table->string('website')->nullable();
+            $table->string('password')->nullable();
             $table->softDeletes();
             $table->timestamps();
-            
+
         });
     }
 
