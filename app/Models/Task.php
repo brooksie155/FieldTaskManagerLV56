@@ -7,11 +7,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Task extends Model
 {
+    
     use SoftDeletes;
     
     const CREATED_AT = 'created_at';      // default(s)
     const UPDATED_AT = 'updated_at';
 
+    /**
+     * @var array $fieldMeta  -- fields not required on update !!
+     */
+    private $fieldMeta = [
+       'firstname'  => 'required|string',
+       'lastname'   => 'required|string',
+       'email'      => 'string',
+       'phone'      => 'numeric',
+       'company'    => 'required|string',
+       'address'    => 'string'            
+    ];        
+    
      /**
      * Table name
      *

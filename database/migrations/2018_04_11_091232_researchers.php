@@ -4,7 +4,11 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-// e.g. Hope & Anchor (research clients) -> their clients may also need a dashbaord at somepoint
+
+/**
+ * Admin - access all areas , Laura & Claire
+ * 
+ */
 class Researchers extends Migration
 {
     /**
