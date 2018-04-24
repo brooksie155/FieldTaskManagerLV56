@@ -4,12 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-/**
- * Research companies, i.e. Hope and Anchor, Kantar, Spinach 
- * - will require a login so they can review project progress 
- * ... project info, tasks, respondent list (anonyimised ?), responses
- */
-class Clients extends Migration
+class ResearchClientUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -18,19 +13,19 @@ class Clients extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('research_client_users', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('research_client_id');
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('email')->nullable();
+            $table->string('email');
+            $table->string('password');
             $table->string('phone')->nullable();
-            $table->string('company');
-            $table->text('address')->nullable();
-            $table->string('website')->nullable();
-            $table->string('password')->nullable();
+            $table->string('totp')->nullable();
             $table->softDeletes();
+            $table->rememberToken();
             $table->timestamps();
-
+            $table->index('research_client_id');
         });
     }
 
@@ -41,6 +36,6 @@ class Clients extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('research_client_users');
     }
 }

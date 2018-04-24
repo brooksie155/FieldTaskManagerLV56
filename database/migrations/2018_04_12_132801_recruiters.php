@@ -13,7 +13,7 @@ class Recruiters extends Migration
      */
     public function up()
     {
-        Schema::create('users_recruiters', function (Blueprint $table) {
+        Schema::create('recruiters', function (Blueprint $table) {
             $table->increments('id');
             $table->string('firstname');
             $table->string('lastname');
@@ -33,6 +33,6 @@ class Recruiters extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_recruiters');
+        Schema::dropIfExists('recruiters');
     }
 }

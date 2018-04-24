@@ -18,13 +18,12 @@ class Projects extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->text('introduction')->nullable();
-            $table->integer('researcher_id')->nullable();
-            $table->integer('client_id')->nullable();
+            $table->integer('research_client_id')->nullable();
             $table->date('due')->nullable();
             $table->enum('status',['proposed','active','post-processing','delivered']);
             $table->softDeletes();
             $table->timestamps();
-            $table->index('client_id');
+            $table->index('research_client_id');
         });
     }
 

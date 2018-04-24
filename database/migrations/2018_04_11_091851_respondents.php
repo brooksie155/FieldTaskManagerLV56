@@ -13,7 +13,7 @@ class Respondents extends Migration
      */
     public function up()
     {
-        Schema::create('users_respondents', function (Blueprint $table) {
+        Schema::create('respondents', function (Blueprint $table) {
             $table->increments('id');
             $table->string('firstname');
             $table->string('lastname');
@@ -25,9 +25,12 @@ class Respondents extends Migration
             $table->enum('gender', ['male','female','other']);
             $table->string('gender_other');
             $table->text('profile');  // data from screener form
+            $table->integer('recruiter_id');
+            
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
+            $table->index('recruiter_id');
         });
     }
 
@@ -38,6 +41,6 @@ class Respondents extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users_respondents');
+        Schema::dropIfExists('respondents');
     }
 }
