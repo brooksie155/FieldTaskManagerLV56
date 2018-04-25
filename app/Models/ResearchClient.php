@@ -92,19 +92,5 @@ class ResearchClient extends Model implements CrudModelInterface
     {
         return $this->fieldMeta;
     }
-    
-//    public function getFieldMetaForUpdate() : array
-//    {
-//        foreach ($this->fieldMeta as $field => $meta) {
-//            $fieldMetaForUpdate[$field] = str_replace(
-//                'required|', 
-//                '', 
-//                $meta
-//            );
-//        }
-//        
-//        return $fieldMetaForUpdate ?? [];
-//     }
-        
-    
+       
 }
