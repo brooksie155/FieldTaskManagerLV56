@@ -31,11 +31,11 @@ class Respondents extends Migration
             $table->tinyInteger('age');
             $table->enum('social_economic_grade', ['A', 'B', 'C1', 'C2', 'D', 'E']);
             $table->enum('gender', ['male','female','other']);
-            $table->string('gender_other');
-            $table->text('profile');  // data from screener form
+            $table->string('gender_other')->nullable();
+            $table->text('profile')->nullable();  // data from screener form
             $table->integer('recruiter_id');
             $table->integer('project_id');   // keep different record per project (even if respondent is reused)
-            $table->enum('duplicate_flag',['Y','N']); // if possible duplicate detected on current or recent projects (90 days)
+            $table->enum('duplicate_flag',['Y','N'])->default('N'); // if possible duplicate detected on current or recent projects (90 days)
             $table->integer('duplicate_respondent_id')->default(0);
             $table->softDeletes();
             $table->rememberToken();
