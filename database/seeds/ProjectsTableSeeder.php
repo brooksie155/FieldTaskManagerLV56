@@ -19,8 +19,8 @@ class ProjectsTableSeeder extends Seeder
         Project::create([
             'name' => 'Projet 100',
             'description' => 'The first dummy project',
-            'researcher_id' => 1,
-            'client_id' => 1,
+            'introduction' => 'In the beginning...',
+            'research_client_id' => 1,
             'due' => $dt->modify('+3 month'),
             'status' => 'proposed'
         ]);
@@ -28,8 +28,7 @@ class ProjectsTableSeeder extends Seeder
         Project::create([
             'name' => 'Projet 200',
             'description' => 'The second dummy project',
-            'researcher_id' => 2,
-            'client_id' => 1,
+            'research_client_id' => 2,
             'due' => $dt->modify('+3 month'),
             'status' => 'active'      
         ]);    

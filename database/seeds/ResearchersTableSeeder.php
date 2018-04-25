@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\UsersResearchers;
+use App\Models\AdminUser;
 
 /**
  * Description of Researchers
@@ -14,8 +14,8 @@ class ResearchersTableSeeder extends Seeder
     public function run()
     {    
 
-        DB::table('users_researchers')->delete();
-        UsersResearchers::create([
+        DB::table('admin_users')->delete();
+        AdminUser::create([
             'firstname' => 'steve',
             'lastname' => 'brooks',
             'email' => 'foo@bar.com',
@@ -23,7 +23,7 @@ class ResearchersTableSeeder extends Seeder
             'password' => 'password'           
         ]);
         
-        UsersResearchers::create([
+        AdminUser::create([
             'firstname' => 'laura',
             'lastname' => 'brooks',
             'email' => 'foo@bar.com',

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Client;
+use App\Models\ResearchClient;
 
 /**
  * Description of ClientTableSeeder
@@ -13,10 +13,8 @@ class ClientTableSeeder extends Seeder
     public function run()
     {    
 
-        DB::table('clients')->delete();
-        Client::create([
-            'firstname' => 'steve',
-            'lastname' => 'brooks',
+        DB::table('research_clients')->delete();
+        ResearchClient::create([
             'email' => 'foo@bar.com',
             'phone' => '01234 567890',
             'company' => 'BromideTech',
@@ -24,9 +22,7 @@ class ClientTableSeeder extends Seeder
             'website' => 'brooksie-net.co.uk'
         ]);
         
-        Client::create([
-            'firstname' => 'bob',
-            'lastname' => 'afet',
+        ResearchClient::create([
             'email' => 'bon@fet.com',
             'phone' => '01234 567890',
             'company' => 'BobAfet.com',
@@ -34,9 +30,7 @@ class ClientTableSeeder extends Seeder
             'website' => 'scrabble-net.com'
         ]);
 
-        Client::create([
-            'firstname' => 'jim',
-            'lastname' => 'crabapple',
+        ResearchClient::create([
             'email' => 'jim@crab.com',
             'phone' => '01234 567890',
             'company' => 'CrabApple Studios',

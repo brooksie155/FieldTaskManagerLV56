@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\UsersRespondents;
+use App\Models\Respondent;
 
 /**
  * Description of RespondentsTableSeeder
@@ -12,22 +12,33 @@ class RespondentsTableSeeder extends Seeder
 {
     public function run()
     {      
-        DB::table('users_respondents')->delete();
+        DB::table('respondents')->delete();
        
-        UsersRespondents::create([
+        Respondent::create([
             'firstname' => 'jim',
             'lastname' => 'bob',
             'email' => 'jim@bob.com',
             'phone' => '010',
-            'password' => 'password'           
+            'password' => 'password',
+            'age' => 34,
+            'social_economic_grade' => 'A',
+            'gender' => 'male',
+            'recruiter_id' => 1,
+            'project_id' => 1
+            
         ]);
         
-        UsersRespondents::create([
+        Respondent::create([
             'firstname' => 'Frank',
             'lastname' => 'Stark',
             'email' => 'frank@stark.com',
             'phone' => '020',
-            'password' => 'password'           
+            'password' => 'password',
+            'age' => 22,
+            'social_economic_grade' => 'C1',
+            'gender' => 'female',
+            'recruiter_id' => 1,
+            'project_id' => 1
         ]);    
     }
 }
