@@ -7,7 +7,7 @@ use App\Http\Controllers\Helpers\CrudController\CrudControllerInterface;
 use App\Http\Controllers\Helpers\CrudController\CrudControllerTrait;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Client as elClient;
+use App\Models\ResearchClient as ResearchClientModel;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as IlluminateResponse;
@@ -15,7 +15,7 @@ use Illuminate\Http\Response as IlluminateResponse;
 /**
  * Manage client CRUD interactions
  */
-class ClientManager extends Controller
+class ResearchClientManager extends Controller
 {
     use CrudControllerTrait;     
     
@@ -23,25 +23,20 @@ class ClientManager extends Controller
      * @var array $searchableFields
      */
     protected $searchableFields = [
-        'firstname', 'lastname', 'email', 'phone', 'company'
+        'email', 'phone', 'company','website'
     ];
-    
-    /**
-     * @var array $whereColumnConditions
-     */    
-    private $whereColumnConditions = [];
     
     /**
      * @var App\Models\Client
      */
-    private $elClient; 
+    private $model; 
     
     /**
      * 
      */
     public function __construct()
     {
-        $this->elClient = new elClient();
+        $this->model = new ResearchClientModel();
     }
     
     /**
@@ -50,7 +45,7 @@ class ClientManager extends Controller
      */
     public function getModel() : Model
     {
-        return $this->elClient;
+        return $this->model;
     }    
     
     /**

@@ -13,15 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-/**
- * Use for route construction ?? WIP
- */
-$routing = [
-    'client' => [
-        'post' => ['add','update','delete','restore','expunge'],
-        'get' => ['list','search','deleted']
-    ]
-];
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -71,17 +62,55 @@ $crudRoutes = [
 ];
 
 $crudControllers = [
-    'client' => [
-        'controller' => 'API\ClientManager',
-        'route' => 'client',
+    
+    'research_client' => [
+        'controller' => 'API\ResearchClientManager',
+        'route' => 'research_client',
         'routes' => $crudRoutes        
     ],
+
+    'research_client_user' => [
+        'controller' => 'API\ResearchClientUserManager',
+        'route' => 'research_client_user',
+        'routes' => $crudRoutes        
+    ],    
+    
+    'respondent' => [
+        'controller' => 'API\RespondentManager',
+        'route' => 'respondent',
+        'routes' => $crudRoutes        
+    ],   
+    
+    'task' => [
+        'controller' => 'API\TaskManager',
+        'route' => 'task',
+        'routes' => $crudRoutes
+    ],
+    
+    'task_response' => [
+        'controller' => 'API\TaskResponseManager',
+        'route' => 'task_response',
+        'routes' => $crudRoutes
+    ],    
     
     'project' => [
         'controller' => 'API\ProjectManager',
         'route' => 'project',
         'routes' => $crudRoutes
     ],
+    
+    'admin_user' => [
+        'controller' => 'API\AdminUserManager',
+        'route' => 'admin_user',
+        'routes' => $crudRoutes
+    ],
+    
+    'recruiter' => [
+        'controller' => 'API\RecruiterManager',
+        'route' => 'recruiter',
+        'routes' => $crudRoutes
+    ],    
+    
 ];
 
 foreach($crudControllers as $crudRouteMeta) {
@@ -125,9 +154,10 @@ foreach($crudControllers as $crudRouteMeta) {
 */
 
 include('api/client.php');
-include('api/project.php');
-include('api/task.php');
-include('api/researcher.php');
-include('api/respondent.php');
+
+//include('api/project.php');
+//include('api/task.php');
+//include('api/researcher.php');
+//include('api/respondent.php');
 
 

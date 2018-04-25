@@ -7,17 +7,17 @@ use App\Http\Controllers\Helpers\CrudController\CrudControllerInterface;
 use App\Http\Controllers\Helpers\CrudController\CrudControllerTrait;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Task as TaskModel;
+use App\Models\TaskResponse as TaskResponseModel;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as IlluminateResponse;
 
 /**
- * Description of TaskManager
+ * Description of TaskResponses
  *
  * @author stephenb
  */
-class TaskManager extends Controller
+class TaskResponseManager extends Controller
 {
     use CrudControllerTrait;     
     
@@ -27,7 +27,7 @@ class TaskManager extends Controller
      * @var array $searchableFields
      */
     protected $searchableFields = [
-        'summary', 'type', 'project_id', 'due'
+        'complete', 'respondent_id', 'project_id', 'task_id'
     ];
     
     /**
@@ -40,7 +40,7 @@ class TaskManager extends Controller
      */
     public function __construct()
     {
-        $this->model = new TaskModel();
+        $this->model = new TaskResponseModel();
     }
     
     /**
@@ -61,4 +61,21 @@ class TaskManager extends Controller
         return $this->searchableFields;
     }     
 
-}
+    public function uploadFile()
+    {}
+    
+    public function getResponsesForTask()
+    {
+        // GET search/?search={"task_id":1234}
+        
+    }
+    
+    /**
+     *
+     */
+    public function getResponsesForProject()
+    {
+        // GET search/?search={"project_id":1234}
+    }    
+} 
+

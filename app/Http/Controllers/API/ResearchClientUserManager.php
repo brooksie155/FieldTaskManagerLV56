@@ -7,31 +7,27 @@ use App\Http\Controllers\Helpers\CrudController\CrudControllerInterface;
 use App\Http\Controllers\Helpers\CrudController\CrudControllerTrait;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Task as TaskModel;
+use App\Models\ResearchClientUser as ResearchClientUserModel;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as IlluminateResponse;
 
 /**
- * Description of TaskManager
- *
- * @author stephenb
+ * Manage client CRUD interactions
  */
-class TaskManager extends Controller
+class ResearchClientUserManager extends Controller
 {
     use CrudControllerTrait;     
     
     /**
-     * search summary using wildcards?
-     * 
      * @var array $searchableFields
      */
     protected $searchableFields = [
-        'summary', 'type', 'project_id', 'due'
+        'firstname', 'lastname', 'email', 'phone', 'research_client_id'
     ];
     
     /**
-     * @var App\Models\Task
+     * @var App\Models\Client
      */
     private $model; 
     
@@ -40,7 +36,7 @@ class TaskManager extends Controller
      */
     public function __construct()
     {
-        $this->model = new TaskModel();
+        $this->model = new ResearchClientUserModel();
     }
     
     /**
@@ -59,6 +55,6 @@ class TaskManager extends Controller
     public function getSearchableFields() : array
     {
         return $this->searchableFields;
-    }     
-
+    }           
 }
+
