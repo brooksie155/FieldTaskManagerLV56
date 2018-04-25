@@ -32,6 +32,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 | @todo break out into coroutines, yield data rather than nested loops
 |     lambda, closure, coroutine ... ?
 */
+
 $crudRoutes = [
     
     'get' => [

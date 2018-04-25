@@ -10,16 +10,30 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\QueryException;
 
+use App\Models\Helpers\CrudModel\CrudModelInterface;
+
 /**
  * Provides boilerplate for controller CRUD actions
  * 
- * Expects implementing controllers to provide a getModel() method
+ * Expects implementing controllers to provide a getModel() method to 
+ * return an eloquent model instance, this is defined in the accompanying 
+ * interface which should be implemented by controllers using this trait
  *
  * @author brooksie
  */
 trait CrudControllerTrait 
 {
     /**
+     * @var array $whereColumnConditions
+     */
+    private $whereColumnConditions = [];
+    
+    /**
+     * Requests a specific record from an eloquent model, expects primary key
+     * to be id
+     * 
+     * @todo as an getPKey() method to the interface and require the controllers 
+     * to provide this.
      * 
      * @param int $id
      * @return IlluminateResponse
@@ -31,7 +45,8 @@ trait CrudControllerTrait
     }
     
     /**
-     * List all clients
+     * List action, invokes list request on an eloquent model with ordering, 
+     * paging parameters
      * 
      * @param string $order
      * @param string $orderDir
@@ -46,7 +61,6 @@ trait CrudControllerTrait
         int $offset = 0,
         bool $withTrashed = false) : IlluminateResponse
     {
-                       
         $model = $this->getModel();
         
         $modelInstance = $model
@@ -63,7 +77,10 @@ trait CrudControllerTrait
     }    
     
     /**
-     * Add search parameters, expected as json array 
+     * Decorates the list method by generating a list of search conditions, 
+     * expected as json array. Searchable fields must be defined in the controller
+     * using this trait
+     *  
      * e.g.  ?search={'id':1, ...}
      * 
      * @param Request $request
@@ -88,8 +105,10 @@ trait CrudControllerTrait
     }    
 
     /**
-     * Uses $request->validate which will return a json response to AJAX requests
-     * - redirects to / on web based requests....?
+     * Uses $request->validate which will return a json response to AJAX requests,
+     * validates against meta list defined in the model
+     * 
+     * - redirects to / on web based requests, return errors for XHR requests
      * 
      * @param Request $request
      * @return IlluminateResponse
@@ -97,6 +116,10 @@ trait CrudControllerTrait
      */
     public function addAction(Request $request)  : IlluminateResponse 
     {
+        if (!$this->getModel() instanceof CrudModelInterface) {
+            return Response(get_class($this->getModel()) . " must implement CrudModelInterface for this action");
+        }
+        
         $fieldMeta = $this->getModel()->getFieldMeta();
         $validated = $request->validate($fieldMeta);       
 
@@ -116,7 +139,7 @@ trait CrudControllerTrait
     }
     
    /**
-     * Update client
+     * Update CRUD model
      * 
      * @param Request $request
      * @param int $id
@@ -124,6 +147,11 @@ trait CrudControllerTrait
      */
     public function updateAction(Request $request, int $id)  : IlluminateResponse 
     {
+        
+        if (!$this->getModel() instanceof CrudModelInterface) {
+            return Response(get_class($this->getModel()) . " must implement CrudModelInterface for this action");
+        }
+        
         $fieldMeta = $this->getModel()->getFieldMetaForUpdate();
         $validated = $request->validate($fieldMeta);       
 
@@ -178,7 +206,7 @@ trait CrudControllerTrait
     }
         
     /**
-     * Physically delete client
+     * Physically delete record, must already by marked as deleted
      * 
      * @param int $id
      * @return IlluminateResponse
