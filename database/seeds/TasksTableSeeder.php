@@ -3,12 +3,6 @@
 use Illuminate\Database\Seeder;
 use App\Models\Task;
 
-
-/**
- * Description of TasksTableSeeder
- *
- * @author stephenb
- */
 class TasksTableSeeder extends Seeder
 {
     public function run()
@@ -48,6 +42,7 @@ class TasksTableSeeder extends Seeder
             'summary' => 'Task 104',
             'description' => 'The first dummy project T4',
             'type' => 'select_one',
+            'response_options' => '{"A":"Option A", "B":"Option B"}',
             'project_id' => 1,
             'project_task_number' => 4,
             'due' => $dt->modify('+2 month'),
@@ -57,6 +52,8 @@ class TasksTableSeeder extends Seeder
             'summary' => 'Task 105',
             'description' => 'The first dummy project T5',
             'type' => 'select_multiple',
+            'response_options' => '{"A":"Option A", "B":"Option B","C":"Option C"}',
+            'minimum_requirement' => 2,
             'project_id' => 1,
             'project_task_number' => 5,
             'due' => $dt->modify('+2 month'),

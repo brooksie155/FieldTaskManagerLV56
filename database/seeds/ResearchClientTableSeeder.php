@@ -3,16 +3,10 @@
 use Illuminate\Database\Seeder;
 use App\Models\ResearchClient;
 
-/**
- * Description of ClientTableSeeder
- *
- * @author stephenb
- */
-class ClientTableSeeder extends Seeder
+class ResearchClientTableSeeder extends Seeder
 {
     public function run()
     {    
-
         DB::table('research_clients')->delete();
         ResearchClient::create([
             'email' => 'foo@bar.com',

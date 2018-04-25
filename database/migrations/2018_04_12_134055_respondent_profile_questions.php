@@ -22,6 +22,7 @@ class RespondentProfileQuestions extends Migration
                 'type', 
                 ['text','select_one','select_multiple']
             );            
+            $table->text('response_options')->nullable();
             $table->integer('minimum_requirement')->default(1);
             
             $table->softDeletes();

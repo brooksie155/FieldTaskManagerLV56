@@ -8,7 +8,7 @@ use App\Models\AdminUser;
  *
  * @author stephenb
  */
-class ResearchersTableSeeder extends Seeder
+class AdminUsersTableSeeder extends Seeder
 {
     
     public function run()
