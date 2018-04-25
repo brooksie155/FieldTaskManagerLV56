@@ -6,26 +6,34 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Helpers\CrudModel\CrudModelTrait;
+use App\Models\Helpers\CrudModel\CrudModelInterface;
 
-class Client extends Model
+class ResearchClient extends Model implements CrudModelInterface
 {
 //    const CREATED_AT = 'created_at';      // default(s)
 //    const UPDATED_AT = 'updated_at';    
     
     use SoftDeletes;
+    use CrudModelTrait;
+    
+    /**
+     * The connection name for the model.
+     *
+     * @var string
+     */
+//    protected $connection = 'mysql';      // default    
     
     /**
      * @var array $fieldMeta  -- fields not required on update !!
      */
     private $fieldMeta = [
-       'firstname'  => 'required|string',
-       'lastname'   => 'required|string',
-       'email'      => 'string',
+       'email'      => 'email',
        'phone'      => 'numeric',
        'company'    => 'required|string',
-       'address'    => 'string'            
+       'address'    => 'string',
+       'website'    => 'url'
     ];    
-    
 
      /**
      * Table name, by default 'clients' would be derived from the 
@@ -33,15 +41,7 @@ class Client extends Model
      *
      * @var string $table
      */   
-    protected $table = 'clients';         // 
-    
-    
-    /**
-     * The connection name for the model.
-     *
-     * @var string
-     */
-//    protected $connection = 'mysql';      // default
+    protected $table = 'research_clients';    
     
     /**
      * The attributes that should be mutated to dates.
@@ -64,16 +64,27 @@ class Client extends Model
      */
      protected $guarded = ['created_at', 'deleted_at', 'updated_at'];    
      
+     
     /**
      * 
-     * @return \App\Models\Task
+     * @return HasMany
      */
     public function project() : HasMany
     {
-        // fk = projects.client_id
+        // fk = projects.research_client_id
         return $this->hasMany(Project::class);
     }
     
+    /**
+     * 
+     * @return HasMany
+     */
+    public function users() : HasMany
+    {
+        // fk = research_clients.research_client_id        
+        return $this->hasMany(ResearcherClientUser::class);
+    }
+
     /**
      * @return array
      */
@@ -82,18 +93,18 @@ class Client extends Model
         return $this->fieldMeta;
     }
     
-    public function getFieldMetaForUpdate() : array
-    {
-        foreach ($this->fieldMeta as $field => $meta) {
-            $fieldMetaForUpdate[$field] = str_replace(
-                'required|', 
-                '', 
-                $meta
-            );
-        }
-        
-        return $fieldMetaForUpdate ?? [];
-     }
+//    public function getFieldMetaForUpdate() : array
+//    {
+//        foreach ($this->fieldMeta as $field => $meta) {
+//            $fieldMetaForUpdate[$field] = str_replace(
+//                'required|', 
+//                '', 
+//                $meta
+//            );
+//        }
+//        
+//        return $fieldMetaForUpdate ?? [];
+//     }
         
     
 }

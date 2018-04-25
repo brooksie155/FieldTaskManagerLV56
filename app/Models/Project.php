@@ -4,12 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Helpers\CrudModel\CrudModelTrait;
+use App\Models\Helpers\CrudModel\CrudModelInterface;
 
-class Project extends Model
+class Project extends Model implements CrudModelInterface
 {
     use SoftDeletes;
+    use CrudModelTrait;
     
     const CREATED_AT = 'created_at';      // default(s)
     const UPDATED_AT = 'updated_at';
@@ -27,8 +31,8 @@ class Project extends Model
     private $fieldMeta = [
        'name'  => 'required|string',
        'description' => 'string',
-       'researcher_id' => 'numeric',    // Referenece ?
-       'client_id' => 'numeric',    // Reference ?
+       'introduction' => 'string',
+       'research_client_id' => 'numeric',    // Reference ?
        'due' => 'date',
        'status' => 'required|in:proposed, active, post-processing, delivered'            
     ];        
@@ -73,19 +77,28 @@ class Project extends Model
      * 
      * @return \UsersReserchers
      */
-    public function researcher() : UsersReserchers
+    public function researcheClient() : ResearchClient
     {
-        return $this->belongsTo(UsersReserchers::class, 'researcher_id'); 
+        return $this->belongsTo(ResearchClient::class, 'research_client_id'); 
     }
     
     /**
      * 
-     * @return \App\Models\Task
+     * @return HasMany
      */
-    public function tasks() // : Task or array/collection
+    public function tasks() : HasMany
     {
         // will lookup on 'project_id' by defafult
         return $this->hasMany(Task::class);
+    }
+    
+    /**
+     * 
+     * @return HasMany
+     */
+    public function respondentProfileQuestions() : HasMany
+    {
+        return $this->hasMany(RespondentProfileQuestion::class);
     }
     
     /**
@@ -94,12 +107,12 @@ class Project extends Model
     public function respondents() : HasManyThrough 
     {
         return $this->hasManyThrough(
-            UsersRespondents::class, 
+            Respondents::class, 
             ProjectRespondents::class, 
             'project_id',               // fk on ProjectRespondents in join table
             'respondent_id',            // fk on UsersRespondents in join table
             'id',                       // pk on Projects (this)
-            'id'                        // px on UserRespondents 
+            'id'                        // px on Respondents 
         );
     }
 }
